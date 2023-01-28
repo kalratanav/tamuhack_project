@@ -20,7 +20,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className='titleContainer'>
-          <h1 className='title'>Team Allottment API</h1>
+          <h1 className='title'>
+            <span>Team Allottment API</span>
+          </h1>
         </div>
         <div className='inputContainer'>
           <div className='box'>
