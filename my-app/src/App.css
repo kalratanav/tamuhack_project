@@ -15,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   flex: auto;
   flex-direction: column;
@@ -53,4 +53,22 @@
   background-color:gray;
   color: azure;
   font-weight: bold;
+}
+.title {
+  margin-top: 0;
+  padding-top: 10px;
+  color: hsl(0, 0%, 28%);
+  font-size: 50px;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 7px;
+}
+
+.title span {
+  transition: 0.5s ease-out;
+}
+
+.title:hover span {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
 }

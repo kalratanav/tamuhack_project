@@ -19,6 +19,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className='titleContainer'>
+          <h1 className='title'>Team Allottment API</h1>
+        </div>
         <div className='inputContainer'>
           <div className='box'>
           <div className='Form'>
