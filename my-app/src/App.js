@@ -1,5 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
+import {csv} from 'react';
+var FormData = require('form-data');
+var fs = require('fs');
+import papa from "papaparse";
 
 
 function App() {
@@ -12,13 +16,14 @@ function App() {
     setIsFilePicked(true);
   };
 
-
   const handleSubmission = () => {
     const formData = new FormData();
-
-    formData.append('File', selectedFile)
-
     
+    formData.append('File', selectedFile);
+
+    var array = csv.toString().split("\r")
+    alert(formData);
+    r
   };
 
   return (
@@ -36,9 +41,6 @@ function App() {
               Upload teams.csv file: 
             </label>
             <div>
-              <label for="file-upload" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Upload File
-              </label>
               <input 
                 id="file-upload"
                 type="file"
@@ -53,9 +55,6 @@ function App() {
               Upload floors.csv file: 
             </label>
             <div>
-            <label for="file-upload2" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Upload File
-              </label>
               <input 
                 id="file-upload2"
                 type="file"
