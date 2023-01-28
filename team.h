@@ -20,11 +20,12 @@ public:
 
     Team(const Team& other); //constructor, but lowk dont need this
 
-    void clear();
+    void load_team_data(string filename);
 
-    void peek_floor(); //looks at current capacity of floor
+    void floor_set(bool change); //change the bool value for if set on a floor
 
-    void load_team_data();
+    void add_to_vector(string type, int add);
+
 
 };
 

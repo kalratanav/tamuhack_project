@@ -21,7 +21,8 @@ public:
     void add_team(Team filler); // add to the vector
     //change bool...if occupied/capacity > .75, then, we can change the bool val
     void change_bool();
-
+    
+    float peek_floor(); //checks current capacity
 
 
 
