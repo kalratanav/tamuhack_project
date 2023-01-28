@@ -16,10 +16,10 @@ class Team
         vector <int> tolerated;
         vector <int> no_way;
     public:
-        Team(); //default constructor
+        Team():strength(0), set_on_floor(false){} //default constructor
         Team(int strength, vector <int> preferred, vector <int> tolerated, vector <int> no_way);
 
-        // ~Team();
+        ~Team();
 
         // Team(const Team& other); //constructor, but lowk dont need this
 
@@ -30,6 +30,8 @@ class Team
         void set_floor(bool change); //change the bool value for if set on a floor
 
         void set_team_number(int number);
+        int get_team_number();
+
         void add_to_vector(int type, int add);
 
         vector <int> getPreferred();

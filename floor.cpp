@@ -1,10 +1,10 @@
 #include "floor.h"
 
-void floor::change_occupied(){
+void floor::set_occupied(){
     //updating the occupied value
-    double sum 0;
-    for (unsigned int = 0; i < teams.size()){
-        sum += teams.at(0).team_number;
+    double sum = 0;
+    for (unsigned int i = 0; i < teams.size()){
+        sum += teams.get_team_number();
     }
 
     occupied = sum/(static_cast<double>(capacity));

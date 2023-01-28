@@ -10,13 +10,6 @@ using std::cout;
 
 using namespace std;
 
-Team::Team()
-{
-  strength = 0;
-  set_on_floor = false;
-}
-
-
 Team::Team(int strength, vector <int> preferred, vector <int> tolerated, vector <int> no_way)
 {
   this->strength = strength;
@@ -35,12 +28,12 @@ Team::Team(int strength, vector <int> preferred, vector <int> tolerated, vector 
 //   this->no_way = other.getNo_Way();
 // }
 
-// Team::~Team()
-// {
-//   delete preferred;
-//   delete tolerated;
-//   delete no_way;
-// }
+Team::~Team()
+{
+  preferred.clear();
+  tolerated.clear();
+  no_way.clear();
+}
 
 int Team::get_strength()
 {
@@ -91,4 +84,9 @@ void Team::add_to_vector(int type, int add){
 void Team::set_team_number(int val)
 {
   team_number = val;
+}
+
+int Team::get_team_number()
+{
+  return team_number;
 }

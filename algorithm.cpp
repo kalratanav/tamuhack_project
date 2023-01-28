@@ -1,7 +1,26 @@
 // #include "floor.cpp"
 #include "team.cpp"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
+vector<int> field2vector(string field)
+{
+    stringstream fieldStream(field);
+    vector <int> fieldNums;
+    while(!fieldStream.fail())
+    {
+        string num;
+        fieldStream >> num;
+        // cout << "num: " << num << endl;
+        if(num != "")
+        {
+            fieldNums.push_back(stoi(num));
+        }
+    }
+    return fieldNums;
+}
 
 vector<Team*> import_teams(string fileName)
 {
@@ -24,33 +43,22 @@ vector<Team*> import_teams(string fileName)
         getline(s, preferred, ',');
         getline(s, tolerated, ',');
         getline(s, no_way, ',');
-        vector <int> prefNums = field2array(preferred);
-        vector <int> tolNums = field2array(tolerated);
-        vector <int> no_wayNums = field2array(no_way);
+        // cout << "preferred: " << preferred << endl;
+        vector <int> prefNums = field2vector(preferred);
+        vector <int> tolNums = field2vector(tolerated);
+        vector <int> no_wayNums = field2vector(no_way);
+        // cout << "strength: " << strength << endl;
         teams.push_back(new Team(stoi(strength), prefNums, tolNums, no_wayNums));
     }
-
     return teams;
-
 }
-
-vector<int> field2array(string field)
-{
-    stringstream fieldStream(field);
-    vector <int> fieldNums;
-    while(!fieldStream.fail())
-    {
-        string num;
-        fieldStream >> num;
-        fieldNums.push_back(stoi(num));
-    }
-
-    return fieldNums;
-}
-
-
 
 int main()
 {
-    import_teams("data.csv");
+    vector<Team*> teams = import_teams("data.csv");
+    for(unsigned int i = 0; i < teams.at(0)->getPreferred().size(); i++)
+    {
+        cout << teams.at(0)->getPreferred().at(i) << " ";
+    }
+    teams.clear();
 }
