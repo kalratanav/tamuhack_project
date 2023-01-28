@@ -32,7 +32,7 @@ function App() {
                 onChange={changeHandler}
               />
               <div>
-                <button onClick={handleSubmission}>Submit</button>
+                <button className='button' onClick={handleSubmission}>Submit</button>
               </div>
             </div>
             <label className='PromptLabel'>
@@ -45,7 +45,7 @@ function App() {
                 onChange={changeHandler}
               />
               <div>
-                <button onClick={handleSubmission}>Submit</button>
+                <button className='button' onClick={handleSubmission}>Submit</button>
               </div>
             </div>
           </div>

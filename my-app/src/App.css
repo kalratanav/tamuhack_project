@@ -49,4 +49,7 @@
 }
 .button {
   flex: auto;
+  background-color:gray;
+  color: azure;
+  font-weight: bold;
 }
