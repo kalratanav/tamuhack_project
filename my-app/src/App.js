@@ -5,15 +5,20 @@ import React, { useState } from 'react';
 function App() {
 
   const [selectedFile, setSelectedFile] = useState("");
-  const [isFilePicked, setIsFilePicked] = useState("");
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
 
-  const handleSubmission = () => {
 
+  const handleSubmission = () => {
+    const formData = new FormData();
+
+    formData.append('File', selectedFile)
+
+    
   };
 
   return (
