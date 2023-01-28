@@ -82,3 +82,25 @@
   color: #fff;
   
 }
+
+input {
+  text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-input {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.custom-file-input:hover {
+  color: gray;
+  cursor: pointer;
+}
+

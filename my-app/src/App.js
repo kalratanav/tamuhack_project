@@ -33,10 +33,14 @@ function App() {
           <div className='box'>
           <div className='Form'>
             <label className='PromptLabel'>
-              Please upload teams.csv file: 
+              Upload teams.csv file: 
             </label>
             <div>
+              <label for="file-upload" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Upload File
+              </label>
               <input 
+                id="file-upload"
                 type="file"
                 name="file"
                 onChange={changeHandler}
@@ -46,14 +50,19 @@ function App() {
               </div>
             </div>
             <label className='PromptLabel'>
-              Please upload floors.csv file: 
+              Upload floors.csv file: 
             </label>
             <div>
+            <label for="file-upload2" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Upload File
+              </label>
               <input 
+                id="file-upload2"
                 type="file"
                 name="file"
                 onChange={changeHandler}
               />
+                
               <div>
                 <button className='button' onClick={handleSubmission}>Submit</button>
               </div>
