@@ -2,4 +2,21 @@
   "dependencies": {
     "react-addons-css-transition-group": "^0.14.8"
   }
+  "name": "tamuhack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": ".\\backend\\venv\\Scripts\\activate.bat && python -m backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalratanav/tamuhack_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalratanav/tamuhack_project/issues"
+  },
+  "homepage": "https://github.com/kalratanav/tamuhack_project#readme"
 }
