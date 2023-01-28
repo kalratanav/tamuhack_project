@@ -2,15 +2,15 @@
 #include "floor.cpp"
 #include <iostream>
 
-void sorting(){
+void sorting(vector<Team*> teams, vector<floor*> floors){
     //base in in terms of biggest to smallest...
     //then rank in terms of how preference works
     bool not_all_set = false;
-    bool conditions_met = false;
+    bool floors_all_filled = false;
 
     while (not_all_set && conditions_met)
     {
-        /* code */
+        for(unsigned int i; i < teams.size())
     }
     
 
