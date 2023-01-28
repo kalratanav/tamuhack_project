@@ -1,0 +1,17 @@
+#include "team.cpp"
+#include "floor.cpp"
+#include <iostream>
+
+void sorting(){
+    //base in in terms of biggest to smallest...
+    //then rank in terms of how preference works
+    bool not_all_set = false;
+    bool conditions_met = false;
+
+    while (not_all_set && conditions_met)
+    {
+        /* code */
+    }
+    
+
+}
