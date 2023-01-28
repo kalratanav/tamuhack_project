@@ -19,66 +19,57 @@ Team::Team()
 
 Team::Team(int strength, vector <int> preferred, vector <int> tolerated, vector <int> no_way)
 {
-  this.strength = strength;
+  this->strength = strength;
   set_on_floor = false;
   this->preferred = preferred;
   this->tolerated = tolerated;
   this->no_way = no_way;
 }
 
-Team::Team(const Team& other)
+// Team::Team(const Team& other)
+// {
+//   this->strength = other.getStrength();
+//   set_on_floor = false;
+//   this->preferred = other.getPreferred();
+//   this->tolerated = other.getTolerated();
+//   this->no_way = other.getNo_Way();
+// }
+
+// Team::~Team()
+// {
+//   delete preferred;
+//   delete tolerated;
+//   delete no_way;
+// }
+
+int Team::get_strength()
 {
-  this.strength = other.getStrength();
-  set_on_floor = false;
-  this->preferred = other.getPreferred();
-  this->tolerated = other.getTolerated();
-  this->no_way = other.getNo_Way();
+  return strength;
 }
 
-Team::~Team()
+void Team::set_strength(int strength)
 {
-<<<<<<< HEAD
-
+  this->strength = strength;
 }
 
-void Team::set_floor(bool change){
-
+void Team::set_floor(bool change)
+{
+  set_on_floor = change;
 }
 
-vector <int> getPreferred()
+vector <int> Team::getPreferred()
 {
   return preferred;
 }
 
-vector <int> getTolerated()
+vector <int> Team::getTolerated()
 {
   return tolerated;
 }
 
-vector <int> getNo_Way()
+vector <int> Team::getNo_Way()
 {
   return no_way;
-  }
-
-void add_to_vector(string type, int add){
-  switch
-  {
-    case (type == "preferred"):
-      preferred.push_back(add);
-      break;
-    case (type == "tolerated"):
-      tolerated.push_back(add);
-      break;
-    case(type == "no_way"):
-      no_way.push_back(add);
-      break;    
-  }
-}
-=======
-}
-
-void Team::floor_set(bool change){
-  set_on_floor = change;
 }
 
 void Team::add_to_vector(int type, int add){
@@ -94,39 +85,10 @@ void Team::add_to_vector(int type, int add){
   case 2: // no way
     no_way.push_back(add);
     break;
-  
-  default:
-    break;
   }
 }
 
-void Team::set_team_number(int val){
+void Team::set_team_number(int val)
+{
   team_number = val;
-
 }
-
-// void Team::load_team_data(string filename){
-
-//   ifstream infs(filename);
-//   if(!(infs.is_open())){
-//     throw std::invalid_argument("file cannot be opened");
-//   }
-//   //string buffer
-
-//   string buffer = "";
-
-//   getline(infs, buffer);
-
-//   while (getline(infs, buffer))
-//   {
-    
-//   }
-  
-
-    
-
-    
-
-// }
->>>>>>> 92cff3980ea1e0aafbecb483ccaf378941469868
-
