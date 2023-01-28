@@ -18,13 +18,14 @@ public:
     Team(); //default constructor
     ~Team();
 
-    Team(const Team& other); //constructor
+    Team(const Team& other); //constructor, but lowk dont need this
 
     void clear();
 
-    unsigned int peek_floor(); //looks at current capacity of floor
+    void peek_floor(); //looks at current capacity of floor
+
+    void load_team_data();
 
 };
-
 
 #endif
