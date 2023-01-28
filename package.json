@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "react-addons-css-transition-group": "^0.14.8"
-  }
+  },
   "name": "tamuhack",
   "version": "1.0.0",
   "description": "",
