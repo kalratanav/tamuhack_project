@@ -36,6 +36,4 @@ floor::~floor()
 {
 }
 
-
-#include <vector>
-#include <string>
+#endif
