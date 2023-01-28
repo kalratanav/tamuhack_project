@@ -5,7 +5,7 @@
 #include <string>
 
 using std::vector;
-#including "team.h"
+#include "team.h"
 
 class floor
 {
@@ -36,6 +36,4 @@ floor::~floor()
 {
 }
 
-
-#include <vector>
-#include <string>
+#endif
