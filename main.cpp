@@ -35,22 +35,20 @@ void load_team_data(string filename){
 
     while (getline(infs, buffer))
     {
-        Team obj;
-        obj.set_team_number(static_cast<int>(buffer.at(0)));
+        // Team obj;
+        // obj.set_team_number(static_cast<int>(buffer.at(0)));
 
-        strength = buffer.substr(1,buffer.find("'", 1));
+        // strength = buffer.substr(1,buffer.find("'", 1));
 
-        tolerated = buffer.substr(buffer.find_first_of("'"),buffer.find_last_of("'"));
+        // tolerated = buffer.substr(buffer.find_first_of("'"),buffer.find_last_of("'"));
 
-        no_way = buffer.substr(buffer.find_last_of("'"));
+        // no_way = buffer.substr(buffer.find_last_of("'"));
 
 
     }
+}
 
-
+void load_floor_data(string filename){
     
-
-    
-
 }
 
