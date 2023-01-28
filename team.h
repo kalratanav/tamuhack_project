@@ -1,26 +1,30 @@
 #ifndef TEAM_H
 #define TEAM_H
 
-class team
+#include <vector>
+#include <string>
+
+using std::vector;
+
+class Team
 {
 private:
-    /* data */
+    unsigned int strength; //size
+    bool set_on_floor = false;
+    vector <int> preferred;
+    vector <int> tolerated;
+    vector <int> no_way;
 public:
-    team(/* args */);
-    ~team();
+    Team(); //default constructor
+    ~Team();
 
-    
+    Team(const Team& other); //constructor
+
+    void clear();
+
+    unsigned int peek_floor(); //looks at current capacity of floor
+
 };
-
-team::team(/* args */)
-{
-
-}
-
-team::~team()
-{
-
-}
 
 
 #endif
