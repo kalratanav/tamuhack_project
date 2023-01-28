@@ -18,12 +18,23 @@ Team::~Team()
 {
 }
 
-void Team::floor_set(bool change){
+void Team::set_floor(bool change){
 
 }
 
 void add_to_vector(string type, int add){
-  
+  switch
+  {
+    case (type == "preferred"):
+      preferred.push_back(add);
+      break;
+    case (type == "tolerated"):
+      tolerated.push_back(add);
+      break;
+    case(type == "no_way"):
+      no_way.push_back(add);
+      break;    
+  }
 }
 
 void Team::load_team_data(string filename){

@@ -17,7 +17,7 @@ private:
 public:
     floor(); 
     ~floor();
-    void change_occupied(); //will be updated
+    void set_occupied(); //will be updated
     void add_team(Team filler); // add to the vector
     //change bool...if occupied/capacity > .75, then, we can change the bool val
     void change_bool();

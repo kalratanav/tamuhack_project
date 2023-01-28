@@ -22,7 +22,7 @@ public:
 
     void load_team_data(string filename);
 
-    void floor_set(bool change); //change the bool value for if set on a floor
+    void set_floor(bool set); //change the bool value for if set on a floor
 
     void add_to_vector(string type, int add);
 
