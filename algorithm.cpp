@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <memory>
+using std::unique_ptr;
 
 vector<int> field2vector(string field)
 {
@@ -22,9 +24,9 @@ vector<int> field2vector(string field)
     return fieldNums;
 }
 
-vector<Team*> import_teams(string fileName)
+vector<unique_ptr<Team>> import_teams(string fileName)
 {
-    vector <Team*> teams;
+    vector <unique_ptr<Team>> teams;
     string header, row, field;
     
     ifstream infs(fileName);
@@ -48,14 +50,15 @@ vector<Team*> import_teams(string fileName)
         vector <int> tolNums = field2vector(tolerated);
         vector <int> no_wayNums = field2vector(no_way);
         // cout << "strength: " << strength << endl;
-        teams.push_back(new Team(stoi(strength), prefNums, tolNums, no_wayNums));
+        teams.push_back(unique_ptr<Team>(new Team(stoi(strength), prefNums, tolNums, no_wayNums)));
+        // cout << "back: " << &teams.back() << endl;
     }
     return teams;
 }
 
 int main()
 {
-    vector<Team*> teams = import_teams("data.csv");
+    vector<unique_ptr<Team>> teams = import_teams("data.csv");
     for(unsigned int i = 0; i < teams.at(0)->getPreferred().size(); i++)
     {
         cout << teams.at(0)->getPreferred().at(i) << " ";

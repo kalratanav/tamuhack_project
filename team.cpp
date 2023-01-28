@@ -14,9 +14,9 @@ Team::Team(int strength, vector <int> preferred, vector <int> tolerated, vector 
 {
   this->strength = strength;
   set_on_floor = false;
-  this->preferred = preferred;
-  this->tolerated = tolerated;
-  this->no_way = no_way;
+  copy(this->preferred.begin(), this->preferred.end(), back_inserter(preferred)); 
+  copy(this->tolerated.begin(), this->tolerated.end(), back_inserter(tolerated)); 
+  copy(this->no_way.begin(), this->no_way.end(), back_inserter(no_way)); 
 }
 
 // Team::Team(const Team& other)
