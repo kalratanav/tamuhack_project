@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 
 function App() {
 
-  const [floors, setFloors] = useState("");
-  const [teams, setTeams] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [isFilePicked, setIsFilePicked] = useState("");
 
@@ -21,37 +19,36 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className='Form'>
-          <form>
-            <label>Enter number of floors: &emsp;
-              <input 
-                type="text"
-                value = {floors}
-                onChange={(e) => setFloors(e.target.value)}
-              />
+        <div className='inputContainer'>
+          <div className='box'>
+          <div className='Form'>
+            <label className='PromptLabel'>
+              Please upload teams.csv file: 
             </label>
-          </form>
-          <form>
-            <label>Enter number of teams: &emsp;
-              <input 
-                type="text" 
-                value = {teams}
-                onChange={(e) => setTeams(e.target.value)}
-              />
-            </label>
-          </form>
-          <label>
-            Please upload teams .csv file: 
-          </label>
-          <div>
-            <input 
-              type="file"
-              name="file"
-              onChange={changeHandler}
-            />
             <div>
-              <button onClick={handleSubmission}>Submit</button>
+              <input 
+                type="file"
+                name="file"
+                onChange={changeHandler}
+              />
+              <div>
+                <button onClick={handleSubmission}>Submit</button>
+              </div>
             </div>
+            <label className='PromptLabel'>
+              Please upload floors.csv file: 
+            </label>
+            <div>
+              <input 
+                type="file"
+                name="file"
+                onChange={changeHandler}
+              />
+              <div>
+                <button onClick={handleSubmission}>Submit</button>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </header>

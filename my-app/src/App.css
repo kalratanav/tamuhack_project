@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  flex: auto;
 }
 
 .App-logo {
@@ -16,7 +17,7 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  flex: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -26,4 +27,26 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.PromptLabel {
+  font-weight: bold;
+}
+
+.inputContainer {
+  text-align: center;
+  align-content: center;
+  flex: content;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+.box {
+  width: fit-content;
+  border-style: outset;
+  padding: 10px;
+  margin-top: 50px;
+}
+.button {
+  flex: auto;
 }
