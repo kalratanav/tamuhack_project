@@ -1,9 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
 import {csv} from 'react';
+import papa from "papaparse";
 var FormData = require('form-data');
 var fs = require('fs');
-import papa from "papaparse";
+
 
 
 function App() {
@@ -23,7 +24,6 @@ function App() {
 
     var array = csv.toString().split("\r")
     alert(formData);
-    r
   };
 
   return (
