@@ -20,13 +20,13 @@ def run_backend():
     )
 
 def run_frontend():
-    system( "cd frontend && npm start" )
+    system( "cd my-app && npm start" )
 
 def generate_client():
     sleep( 1 )
-    system( "cd frontend && npm run update-api-client" )
+    system( "cd my-app && npm run update-api-client" )
 
-def start_server():
+def run_server():
     Thread( target = run_frontend, daemon = True ).start()
     Thread( target = run_backend ).start() # main thread
 
