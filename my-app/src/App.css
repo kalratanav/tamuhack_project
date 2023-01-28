@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  flex: auto;
 }
 
 .App-logo {
@@ -14,9 +15,9 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
-  display: flex;
+  flex: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -27,3 +28,79 @@
 .App-link {
   color: #61dafb;
 }
+
+.PromptLabel {
+  font-weight: bold;
+}
+
+.inputContainer {
+  text-align: center;
+  align-content: center;
+  flex: content;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  color: hsl(0, 0%, 28%);
+}
+.box {
+  width: fit-content;
+  border-style: outset;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 50px;
+}
+.button {
+  flex: auto;
+  background-color:gray;
+  color: azure;
+  font-weight: bold;
+}
+.title {
+  margin-top: 0;
+  padding-top: 10px;
+  color: hsl(0, 0%, 28%);
+  font-size: 50px;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 7px;
+}
+
+.title span {
+  transition: 0.5s ease-out;
+}
+
+.title:hover span {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+
+.box {
+  transition: 0.5s ease-out;
+}
+
+.box:hover {
+  color: #fff;
+  
+}
+
+input {
+  text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-input {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.custom-file-input:hover {
+  color: gray;
+  cursor: pointer;
+}
+
