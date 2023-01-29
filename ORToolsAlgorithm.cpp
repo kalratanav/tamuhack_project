@@ -61,11 +61,26 @@ namespace operations_research {
             tol_bool.push_back(tol_bool_row);
         }
 
+        
+
         const std::vector<int> floor_capacities = { {43, 81, 73, 54, 97} };
         const int num_floors = floor_capacities.size();
         std::vector<int> all_floors(num_floors);
         std::iota(all_floors.begin(), all_floors.end(), 0);
 
+        std::vector<std::vector<bool>> test_bool;
+        for (int i : all_teams)
+        {
+            std::vector<bool> test_bool_row(num_teams, 0);
+            for (int j : all_floors)
+            {
+                if (j % 4 == 0)
+                {
+                    test_bool_row.at(j) = 1;
+                }
+            }
+            test_bool.push_back(test_bool_row);
+        }
         // Create the mip solver with the SCIP backend.
         std::unique_ptr<MPSolver> solver(MPSolver::CreateSolver("SCIP"));
         if (!solver) {
@@ -87,8 +102,11 @@ namespace operations_research {
         // Each team is assigned to at most one floor.
         for (int i : all_teams) {
             LinearExpr sum;
+            //int sum = 0;
             for (int b : all_floors) {
                 sum += x[i][b];
+                //sum += test_bool[i][b];
+                //std::cout << "one_floor_only: " << sum << std::endl;
             }
             solver->MakeRowConstraint(sum <= 1.0);
         }
@@ -96,12 +114,18 @@ namespace operations_research {
         // No teams that are no way get put with each other.
         for (int b : all_floors) {
             LinearExpr no_way_check;
+            //int no_way_check = 0;
             for (int i : all_teams) {
                 for (int i2 : all_teams) {
-                    no_way_check += no_way_bool[i][i2] * LinearExpr(x[i2][b]) + no_way_bool[i][i2] * LinearExpr(x[i][b]);
+                    no_way_check += -(not(no_way_bool[i][i2]) + LinearExpr(not(x[i2][b])) + LinearExpr(not(x[i][b])) - 1);
+                    //no_way_check += -(not(no_way_bool[i][i2] * test_bool[i2][b]) + not(test_bool[i][b]) - 1);
+                    //std::cout << "boolcheck: " << not(no_way_bool[i][i2] * test_bool[i2][b]) << std::endl;
+                    //std::cout << "no_way_check: " << no_way_check << std::endl;
+                    
+                    
                 }
             }
-            solver->MakeRowConstraint(no_way_check <= 1.0);
+            solver->MakeRowConstraint(no_way_check == 0.0);
         }
 
         // The amount packed in each floor cannot exceed its capacity.
@@ -117,10 +141,13 @@ namespace operations_research {
         // Maximize total score of arranged teams.
         MPObjective* const objective = solver->MutableObjective();
         LinearExpr objective_value;
+        //int objective_value = 0;
         for (int b : all_floors) {
             for (int i : all_teams) {
                 for (int i1 : all_teams) {
                     objective_value += LinearExpr(x[i][b]) * strength[i1] * (2 * pref_bool[i][i1] + tol_bool[i][i1]);
+                    //objective_value += test_bool[i][b] * strength[i1] * (2 * pref_bool[i][i1] + tol_bool[i][i1]);
+                    //std::cout << "obj: " << objective_value << std::endl;
                 }
             }
         }
