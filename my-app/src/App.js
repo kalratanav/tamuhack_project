@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
-import { SessionService } from './api/services/SessionService';
+//import { SessionService } from './api/services/SessionService';
+// FIXME
 
 function App() {
 
@@ -12,9 +13,9 @@ function App() {
       try {
         console.log("The name of the files are " + file1.name + " " + file2.name);
         console.log("This will now POST the selected files");
-        
-        SessionService.login({"username":"admin", "password":"password"})
-        .then();
+        // FIXME
+        // SessionService.login({"username":"admin", "password":"password"})
+        // .then();
       }
       catch (Exception) {
         console.log("It didn't work");
