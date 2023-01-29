@@ -1,7 +1,5 @@
 import './App.css';
 import React, { useState } from 'react';
-import {csv} from 'react';
-import Papa from "papaparse";
 var FormData = require('form-data');
 
 function App() {
@@ -19,12 +17,8 @@ function App() {
     if (isFilePicked)
     {
       const files = selectedFile;
-      if (e.name=='teams') {
-        
-      }
-      else {
-
-      }
+      console.log("This will now POST the selectedFile");
+      
     }
   }
 
@@ -51,7 +45,7 @@ function App() {
                 onChange={changeHandler}
               />
               <div>
-                <button className='button' name="teams" onClick={handleSubmission()}>Submit</button>
+                <button className='button' onClick={handleSubmission()}>Submit</button>
               </div>
             </div>
             <label className='PromptLabel'>
@@ -64,9 +58,8 @@ function App() {
                 name="file"
                 onChange={changeHandler}
               />
-                
               <div>
-                <button className='button' name="floors" onClick={handleSubmission}>Submit</button>
+                <button className='button' onClick={handleSubmission}>Submit</button>
               </div>
             </div>
           </div>
