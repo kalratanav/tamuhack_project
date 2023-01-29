@@ -11,6 +11,7 @@ function App() {
       try {
         console.log("The name of the files are " + file1.name + " " + file2.name);
         console.log("This will now POST the selected files");
+        
       }
       catch (Exception) {
         console.log("It didn't work");
