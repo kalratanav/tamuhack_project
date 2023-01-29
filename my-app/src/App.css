@@ -104,6 +104,12 @@ input {
 
 ul {
   list-style-type: none;
+  display: inline;
+}
+
+li {
+  display: inline;
+  padding: 10px;
 }
 
 nav {

@@ -26,10 +26,26 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className='titleContainer'>
-          <h1 className='title'>
-            <span>Team Allottment API</span>
-          </h1>
+        <div className='topLine'>
+          <div className='titleContainer'>
+            <h1 className='title'>
+              <span>
+                <a className = 'titleLink' href="index.html">Space-Probe</a>
+                </span>
+            </h1>
+          </div>
+          <div className="navbar">
+            <nav>
+              <ul>
+                <li className="aboutLink">
+                  About
+                </li>
+                <li className='loginLink'> 
+                  Login
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
         <div className='inputContainer'>
           <div className='box'>
