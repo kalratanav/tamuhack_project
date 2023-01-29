@@ -1,7 +1,9 @@
 import csv
 import json
+import os
 from datetime import datetime, timedelta
 from os import system
+from subprocess import Popen, PIPE
 from threading import Thread
 from time import sleep
 
@@ -23,17 +25,20 @@ app = FastAPI( title = "Team Allotment API", generate_unique_id_function = lambd
 oauth2_scheme = OAuth2PasswordBearer( tokenUrl = "/api/login" )
 
 class Team( BaseModel ):
+    id: int = 0
     user_id: int = 0
-    floor_id: int = 0
+    floor_id: int = -1
     strength: int = 0
     preferred: list[int] = []
     tolerated: list[int] = []
     no_way: list[int] = []
 
 class Floor( BaseModel ):
-    user_id: int = 0
     id: int = 0
+    user_id: int = 0
     name: str = ""
+    occupied: int = 0
+    min_capacity: int = 0
     max_capacity: int = 0
     teams: list[int] = []
 
@@ -177,14 +182,15 @@ def upload_teams_csv( teams_csv: UploadFile, user: User = Depends( get_current_u
     for id, row in df.iterrows():
         # Team, Strength, Preferred, Tolerated, No way
         teams.append( Team(
-            user_id   = user.id,
             id        = int( row["Team"] ),
+            user_id   = user.id,
             strength  = int( row["Strength"] ),
             preferred = [ int( id ) for id in str( row["Preferred"] ).split( " " ) ],
             tolerated = [ int( id ) for id in str( row["Tolerated"] ).split( " " ) ],
             no_way    = [ int( id ) for id in str( row["No way"]    ).split( " " ) ]
         ) )
     user.teams = teams
+    return teams
 
 @app.get( "/api/floors", tags = [ "floor" ] )
 def get_floors( user: User = Depends( get_current_user ) ):
@@ -204,9 +210,48 @@ def upload_floors_csv( floors_csv: UploadFile, user: User = Depends( get_current
         floors.append( Floor(
             id = len( floors ),
             name = row["Floor"],
+            min_capacity = row["Max Capacity"] // 4 + 1,
             max_capacity = row["Max Capacity"]
         ) )
+    floors.append( Floor(
+        id = -1,
+        name = "N/A",
+        max_capacity = 999999999
+    ) )
     user.floors = floors
+    return floors
+
+@app.post( "/api/calculate", tags = [ "user" ] )
+def calculate( user: User = Depends( get_current_user ) ):
+    # example_input = "5 43 81 73 54 97 11 22 4 2 4 6 11 3 3 8 10 3 5 7 9 45 3 1 3 5 3 6 7 11 4 4 8 9 10 34 3 1 2 11 1 7 6 4 5 6 8 9 10 51 1 10 2 1 3 7 2 5 6 7 8 9 11 11 4 1 2 3 4 3 9 10 11 3 6 7 8 37 2 7 10 2 1 8 6 2 3 4 5 9 11 42 6 1 2 3 4 5 6 2 10 11 2 8 9 16 2 1 10 3 2 4 11 5 3 5 6 7 9 29 2 1 5 2 2 10 6 3 4 6 7 8 11 56 4 2 6 7 11 3 4 5 8 3 1 3 9 49 3 1 4 5 6 2 3 6 7 9 10 1 8\n"
+    cpp_input = ""
+    cpp_input += str( len( user.floors ) - 1 ) + " "
+    for floor in user.floors:
+        if floor.id != -1:
+            cpp_input += str( floor.max_capacity ) + " "
+    cpp_input += str( len( user.teams ) - 1 ) + " "
+    for team in user.teams:
+        cpp_input += str( team.strength ) + " "
+        cpp_input += str( len( team.preferred ) ) + " "
+        cpp_input += " ".join( [ str( i ) for i in team.preferred ] ) + " "
+        cpp_input += str( len( team.tolerated ) ) + " "
+        cpp_input += " ".join( [ str( i ) for i in team.tolerated ] ) + " "
+        cpp_input += str( len( team.no_way ) ) + " "
+        cpp_input += " ".join( [ str( i ) for i in team.no_way ] ) + " "
+    cpp_input = cpp_input.rstrip( " " ) + "\n"
+    p = Popen( [ os.path.join( ".", "backend", "algorithm", "a.out" ) ], stdin = PIPE, stdout = PIPE )
+    result = p.communicate( cpp_input.encode( "ascii" ) )[0].decode( "ascii" )
+    best_arrangement = [ int( i ) for i in result.strip().split( "\n" )[0].split( " " ) ]
+    for floor in user.floors:
+        floor.teams.clear()
+        floor.occupied = 0
+    for floor_assignment, team in zip( best_arrangement, user.teams ):
+        team.floor_id = floor_assignment
+        for floor in user.floors:
+            if floor.id == floor_assignment:
+                floor.teams.append( team.id )
+                floor.occupied += team.strength
+    return user
 
 def run_backend():
     uvicorn.run(
@@ -217,18 +262,14 @@ def run_backend():
             #         reload = True
     )
 
-def run_frontend():
-    system( "cd my-app && npm start" )
-
-def generate_client():
+def run_frontend( generate_client = True ):
     sleep( 1 )  # wait for uvicorn to start
-    system( "cd my-app && npm run update-api-client" )
-    Thread( target = run_frontend, daemon = True ).start()
+    system( "cd my-app && npm run update-api-client && npm start" )
 
 def run_server():
-    load_users()
-    Thread( target = generate_client, daemon = True ).start()
-    Thread( target = run_backend ).start()  # main thread
+    # load_users()
+    Thread( target = run_frontend, daemon = True ).start()
+    run_backend()  # main thread
 
 if __name__ == "__main__":
     run_backend()

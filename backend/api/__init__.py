@@ -1,1 +1,1 @@
-from .api import app, run_server, run_frontend, run_backend, generate_client
+from .api import app, run_server, run_frontend, run_backend

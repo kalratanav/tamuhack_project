@@ -19,4 +19,16 @@ export class UserService {
         });
     }
 
+    /**
+     * Calculate
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static calculate(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/calculate',
+        });
+    }
+
 }
