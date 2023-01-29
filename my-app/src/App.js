@@ -70,6 +70,7 @@ function App() {
             </div>
           </div>
           <div className='inputContainer'>
+            <h2 className='inputCaption'>Upload Files Here:</h2>
             <div className='box'>
             <div className='Form'>
               <label className='PromptLabel'>
