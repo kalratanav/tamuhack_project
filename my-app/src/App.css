@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   flex: auto;
+  
 }
 
 .App-logo {
@@ -140,4 +141,24 @@ nav {
 .loginLink:hover {
   color:gray;
   cursor: pointer;
+}
+
+.aboutLink {
+  transition: 0.5s ease-out;
+  font-size: 24;
+}
+
+.aboutLink:hover {
+  color:gray;
+  cursor: pointer;
+}
+
+.infoContainer {
+  margin: 500px;
+}
+body {
+  background-color: rgb(27, 15, 27);
+}
+html {
+  scroll-behavior: smooth;
 }
