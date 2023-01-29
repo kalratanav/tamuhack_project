@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
+import MyVideo from "./video.mp4";
+import Typewriter from "typewriter-effect";
 //import { SessionService } from './api/services/SessionService';
 // FIXME
 
@@ -33,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div class="main" id="section1">
+        <div id="section1">
           <div className='topLine'>
             <div className='titleContainer'>
               <h1 className='title'>
@@ -53,6 +55,18 @@ function App() {
                   </li>
                 </ul>
               </nav>
+            </div>
+          </div>
+          <div className="visualLine">
+            <div className='captionContainer'>
+              <h2 className='caption'>
+                The Modern Office Space Optimizer.
+              </h2>
+            </div>
+            <div className='videoContainer'> 
+              <video autoPlay loop muted id="video">
+                <source src={MyVideo} type='video/mp4' />
+              </video>
             </div>
           </div>
           <div className='inputContainer'>

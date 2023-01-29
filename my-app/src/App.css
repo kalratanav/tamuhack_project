@@ -162,3 +162,33 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.captionContainer {
+  width: 50%;
+  height: 350px;
+  vertical-align: center;
+  display: inline-block;
+}
+
+.caption {
+  font-size: 75px;
+}
+
+.videoContainer {
+  width: 622px;
+  height: 350px;
+  float: left;
+  display: inline-block;
+}
+
+video {
+  width: 622px;
+  height: 350px;
+  float: left;
+  display: inline-block;
+}
+
+.visualLine {
+  height: 350px;
+  background-color:rgb(37, 21, 70);
+}
