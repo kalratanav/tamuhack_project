@@ -100,7 +100,7 @@ void Team::add_to_vector(int type, int add){
 
 
 void Team::update_ranking(){
-  ranking = (prefered.size() + tolerated.size())/no_way.size();
+  pickiness = (preferred.size() + tolerated.size())/no_way.size();
 }
 
 void Team::set_team_number(int val)

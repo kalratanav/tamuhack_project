@@ -12,7 +12,7 @@ class Team
         unsigned int strength; //size
         bool set_on_floor;
         int team_number;
-        double ranking;
+        double pickiness;
         vector <int> preferred;
         vector <int> tolerated;
         vector <int> no_way;
