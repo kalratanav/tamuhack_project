@@ -1,0 +1,232 @@
+.App {
+  text-align: center;
+  flex: auto;
+  
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: rgb(27, 15, 27);
+  min-height: 100vh;
+  flex: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.PromptLabel {
+  font-weight: bold;
+  align-self: center;
+}
+
+.inputContainer {
+  margin-top: 20px;
+  background-color: rgb(16, 16, 55);
+  text-align: center;
+  align-content: center;
+  flex: content;
+  align-items: center;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+}
+
+.inputCaption {
+  color: white;
+  flex: content;
+  align-items:flex-start;
+  align-self: flex-start;
+  padding-left: 20px;
+  font-size: 50px;
+  text-align: left;
+}
+
+.box {
+  width: fit-content;
+  padding: 10px;
+  display: flex;
+  margin-right: 20px;
+}
+
+.button2 {
+  flex: auto;
+  background-color:gray;
+  color: azure;
+  font-weight: bold;
+}
+.title {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 7px;
+  flex: content;
+  vertical-align:middle;
+  display: inline-block;
+}
+
+.titleContainer {
+  width: fit-content;
+  display: inline-block;
+  vertical-align: center;
+  padding-left: 20px;
+}
+
+.title span {
+  transition: 0.25s ease-out;
+}
+
+.title:hover span {
+  color:gray
+}
+
+.box {
+  transition: 0.5s ease-out;
+}
+
+.box:hover {
+  color: gray;
+  
+}
+
+
+
+input {
+  text-align: center;
+  cursor: pointer;
+}
+
+.titleLink {
+    color:white;
+    transition: 0.5s ease-out;
+    text-decoration: none;
+}
+
+.titleLink:hover {
+  color:gray;
+}
+
+ul {
+  list-style-type: none;
+  display: inline;
+}
+
+li {
+  display: inline;
+  padding: 10px;
+}
+
+nav {
+  flex: content;
+  width: fit-content;
+  float: left;
+}
+
+.navbar {
+  width: fit-content;
+  display: inline-block;
+  top:50%;
+  vertical-align: center;
+  align-self: center;
+}
+
+.topLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginLink {
+  padding-right: 20px;
+  transition: 0.5s ease-out;
+  font-size: 24;
+}
+
+.loginLink:hover {
+  color:gray;
+  cursor: pointer;
+}
+
+.aboutLink {
+  transition: 0.5s ease-out;
+  font-size: 24;
+}
+
+.aboutLink:hover {
+  color:gray;
+  cursor: pointer;
+}
+
+.infoContainer {
+  margin: 500px;
+}
+body {
+  background-color: rgb(27, 15, 27);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.captionContainer {
+  width: 50%;
+  height: 350px;
+  vertical-align: center;
+  display: inline-block;
+}
+
+.caption {
+  font-size: 75px;
+}
+
+.videoContainer {
+  width: 622px;
+  height: 350px;
+  float: left;
+  display: inline-block;
+}
+
+video {
+  width: 622px;
+  height: 350px;
+  float: left;
+  display: inline-block;
+}
+
+.visualLine {
+  height: 350px;
+  background-color:rgb(37, 21, 70);
+}
+
+.show {
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  transition: 800ms;
+  opacity: 1;
+}
+
+.show.active {
+  width: 0px;
+  height: 0px;
+  display: none;
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
+}
+
+.loginLine {
+  display: inline-block;
+  align-items: center;
+}
+
+.loginText {
+  margin-top: 0px;
+}
