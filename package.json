@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/kalratanav/tamuhack_project/issues"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "homepage": "https://github.com/kalratanav/tamuhack_project#readme"
 }
