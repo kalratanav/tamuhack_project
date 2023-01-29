@@ -11,10 +11,18 @@ function App() {
   const [isShowLogin, setIsShowLogin] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
 
-  const sendUserData = (e) => {
-    console.log(username + " " + password);
+  const sendUserData = async (e) => {
+    let res = await fetch( `/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: `username=${username}&password=${password}`
+    } ).then( res => res.json() );
+    setToken( res["access_token"] );
   }
 
   const handleClickScroll= () => {
@@ -32,9 +40,19 @@ function App() {
     handleLoginClick()
   }
 
-  const handleSubmission = (e) => {
+  const handleSubmission = async (e) => {
       
       try {
+        let data = new FormData()
+        data.append( "file", file1 )
+        let res = await fetch( `/api/teams/upload`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          },
+          body: data
+        } ).then( res => res.json() );
+        console.log( res )
         console.log("The name of the files are " + file1.name + " " + file2.name);
         console.log("This will now POST the selected files");
         // FIXME
