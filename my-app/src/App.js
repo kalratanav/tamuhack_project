@@ -1,26 +1,21 @@
 import './App.css';
 import React, { useState } from 'react';
-var FormData = require('form-data');
 
 function App() {
 
-  const [selectedFile, setSelectedFile] = useState("");
-  const [isFilePicked, setIsFilePicked] = useState(false);
-  const [teamsOrLevels, setTeamsOrLevels] = useState("");
-
-  const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
-    setIsFilePicked(true);
-  };
+  const [file1, setFile1] = useState(null);
+  const [file2, setFile2] = useState(null);
 
   const handleSubmission = (e) => {
-    if (isFilePicked)
-    {
-      const files = selectedFile;
-      console.log("This will now POST the selectedFile");
-      console.log("The name of the file is " + files.name)
+      console.log("This will now POST the selected files");
+      try {
+        console.log("The name of the files are " + file1.name + " " + file2.name);
+      }
+      catch (Exception) {
+        console.log("It didn't work");
+        console.log(Exception.toString());
+      }
 
-    }
   }
 
   return (
@@ -35,32 +30,26 @@ function App() {
           <div className='box'>
           <div className='Form'>
             <label className='PromptLabel'>
-              Upload teams.csv file: 
+              Upload teams.csv and floors.csv files:
             </label>
             <div>
               <input 
                 id="file-upload"
                 type="file"
-                name="file"
+                name="file-teams"
                 accept=".csv"
-                onChange={changeHandler}
+                onChange={(e) => setFile1(e.target.files[0])}
               />
-              <div>
-                <button className='button' onClick={handleSubmission}>Submit</button>
-              </div>
             </div>
-            <label className='PromptLabel'>
-              Upload floors.csv file: 
-            </label>
             <div>
               <input 
                 id="file-upload2"
                 type="file"
-                name="file"
-                onChange={changeHandler}
+                name="file-floors"
+                onChange={(e) => setFile2(e.target.files[0])}
               />
               <div>
-                <button className='button' onClick={handleSubmission}>Submit</button>
+                <button className='button2' onClick={handleSubmission}>Submit</button>
               </div>
             </div>
           </div>
