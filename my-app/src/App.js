@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
 import MyVideo from "./video.mp4";
-import Typewriter from "typewriter-effect";
 //import { SessionService } from './api/services/SessionService';
 // FIXME
 
@@ -9,6 +8,14 @@ function App() {
 
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
+  const [isShowLogin, setIsShowLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  const sendUserData = (e) => {
+    console.log(username + " " + password);
+  }
 
   const handleClickScroll= () => {
     const element = document.getElementById('section2');
@@ -16,6 +23,14 @@ function App() {
       element.scrollIntoView({behavior: "smooth"});
     }
   };
+
+  const handleLoginClick = () => {
+    setIsShowLogin((isShowLogin) => !isShowLogin)
+  }
+
+  const handleClick = () => {
+    handleLoginClick()
+  }
 
   const handleSubmission = (e) => {
       
@@ -50,7 +65,7 @@ function App() {
                   <li className="aboutLink" href="#section2" onClick={handleClickScroll}>
                     About
                   </li>
-                  <li className='loginLink'> 
+                  <li className='loginLink' onClick={handleClick}> 
                     Login
                   </li>
                 </ul>
@@ -68,6 +83,39 @@ function App() {
                 <source src={MyVideo} type='video/mp4' />
               </video>
             </div>
+          </div>
+          <div className="LoginLine">
+            <div className={`${!isShowLogin ? "active" : ""} show`}>
+              <div className="login-form">
+                  <div className="form-box solid">
+                      <form>
+                          <h1 className="login-text">Sign in</h1>
+                          <label>UserName</label><br></br>
+                          <input 
+                              type="text"
+                              name="username"
+                              className="login-box"
+                              id="user"
+                              onChange={(e) => setUsername(e.target.value)}
+                          /><br></br>
+                          <label>Password</label><br></br>
+                          <input
+                              type="password"
+                              name="password"
+                              className="login-bo"
+                              id="pass"
+                              onChange={(e) => setPassword(e.target.value)}
+                          /><br></br>
+                          <input 
+                            type="button" 
+                            value="LOGIN" 
+                            className="login-btn" 
+                            onClick={ sendUserData }
+                          />
+                      </form>
+                  </div>
+              </div>
+          </div>
           </div>
           <div className='inputContainer'>
             <h2 className='inputCaption'>Upload Files Here:</h2>

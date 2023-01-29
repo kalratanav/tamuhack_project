@@ -205,3 +205,28 @@ video {
   height: 350px;
   background-color:rgb(37, 21, 70);
 }
+
+.show {
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  transition: 800ms;
+  opacity: 1;
+}
+
+.show.active {
+  width: 0px;
+  height: 0px;
+  display: none;
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
+}
+
+.loginLine {
+  display: inline-block;
+  align-items: center;
+}
+
+.loginText {
+  margin-top: 0px;
+}
