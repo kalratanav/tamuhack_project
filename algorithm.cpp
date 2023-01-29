@@ -63,5 +63,5 @@ int main()
     {
         cout << teams.at(0)->getPreferred().at(i) << " ";
     }
-    teams.clear();
+    
 }
