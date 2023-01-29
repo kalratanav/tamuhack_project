@@ -8,6 +8,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Body_login } from './models/Body_login';
 export type { Body_register } from './models/Body_register';
+export type { Body_upload_floors_csv } from './models/Body_upload_floors_csv';
+export type { Body_upload_teams_csv } from './models/Body_upload_teams_csv';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { ValidationError } from './models/ValidationError';
 

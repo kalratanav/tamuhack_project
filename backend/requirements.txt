@@ -1,3 +1,4 @@
 fastapi[all]
 python-multipart
 passlib[bcrypt]
+pandas

@@ -1,3 +1,4 @@
+import csv
 import json
 from datetime import datetime, timedelta
 from os import system
@@ -6,13 +7,15 @@ from time import sleep
 
 import pydantic
 import uvicorn
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, UploadFile
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from uuid import uuid4 as generate_uuid
 
 from passlib.context import CryptContext
 from starlette import status
 from pydantic import BaseModel, Field, SecretStr
+
+import pandas as pd
 
 crypt_ctx = CryptContext( schemes = ["bcrypt"], deprecated = "auto" )
 
@@ -31,7 +34,7 @@ class Floor( BaseModel ):
     user_id: int = 0
     id: int = 0
     name: str = ""
-    size: int = 0
+    max_capacity: int = 0
     teams: list[int] = []
 
 class Token( BaseModel ):
@@ -49,7 +52,21 @@ class User( BaseModel ):
 class Database( BaseModel ):
     users: list[User] = []
 
-db: Database = Database()
+db: Database = Database(
+    users = [
+        User(
+            id = 0,
+            username = "admin",
+            pass_hash = SecretStr( "$2b$12$Zdh.5LquW4bSMTiwMKC1wuRT1C8xWuTXQFEMdDhLDx0EYHTnmm9xa" ), # "password"
+            tokens = [
+                Token(
+                    uuid = SecretStr( "test" ),
+                    granted = datetime.now()
+                )
+            ]
+        )
+    ]
+)
 
 def load_users():
     global db
@@ -148,9 +165,48 @@ def get_user( user: User = Depends( get_current_user ) ):
 def get_teams( user: User = Depends( get_current_user ) ):
     return user.teams
 
+@app.post( "/api/teams/upload", tags = [ "team" ] )
+def upload_teams_csv( teams_csv: UploadFile, user: User = Depends( get_current_user ) ):
+    if not teams_csv.filename.endswith( ".csv" ):
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail = f"Incorrect filetype for file {teams_csv.filename}"
+        )
+    df = pd.read_csv( teams_csv.file )
+    teams = []
+    for id, row in df.iterrows():
+        # Team, Strength, Preferred, Tolerated, No way
+        teams.append( Team(
+            user_id   = user.id,
+            id        = int( row["Team"] ),
+            strength  = int( row["Strength"] ),
+            preferred = [ int( id ) for id in str( row["Preferred"] ).split( " " ) ],
+            tolerated = [ int( id ) for id in str( row["Tolerated"] ).split( " " ) ],
+            no_way    = [ int( id ) for id in str( row["No way"]    ).split( " " ) ]
+        ) )
+    user.teams = teams
+
 @app.get( "/api/floors", tags = [ "floor" ] )
 def get_floors( user: User = Depends( get_current_user ) ):
     return user.floors
+
+@app.post( "/api/floors/upload", tags = [ "floor" ] )
+def upload_floors_csv( floors_csv: UploadFile, user: User = Depends( get_current_user ) ):
+    if not floors_csv.filename.endswith( ".csv" ):
+        raise HTTPException(
+            status_code = status.HTTP_400_BAD_REQUEST,
+            detail = f"Incorrect filetype for file {floors_csv.filename}"
+        )
+    df = pd.read_csv( floors_csv.file )
+    floors = []
+    for id, row in df.iterrows():
+        # Floor, Max Capacity
+        floors.append( Floor(
+            id = len( floors ),
+            name = row["Floor"],
+            max_capacity = row["Max Capacity"]
+        ) )
+    user.floors = floors
 
 def run_backend():
     uvicorn.run(
