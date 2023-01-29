@@ -167,7 +167,8 @@ nav {
 }
 
 .infoContainer {
-  margin: 500px;
+  margin-top: 500px;
+  margin-bottom: 200px;
 }
 body {
   background-color: rgb(27, 15, 27);
@@ -229,4 +230,23 @@ video {
 
 .loginText {
   margin-top: 0px;
+}
+
+.names {
+  margin-bottom: 5px;
+  margin-top: 50px;
+  font-size:medium;
+}
+
+.infoContainer {
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+}
+
+.info {
+  width: 75%;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
 }
