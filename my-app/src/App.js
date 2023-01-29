@@ -152,10 +152,16 @@ function App() {
           <h2>
             About Space-Probe
           </h2>
-          <p>
-            This will contain the information about our API and functionality.
+          <p className='info'>
+            Space-Probe is an API that helps managers organize their teams into their most optimal positions along the floors. <br></br>
+          </p>
+          <p className='info'>
+          A common challenge that clients have is to help fill up an office space, with varying preferences and team sizes.
+          Space-Probe helps clients take their aggregate data about their teams and gives them the most optimal alignment,
+          making companies more efficient and cohesive.
           </p>
         </div>
+        <p className='names'>Built by Tanav Kalra, Jeremy Eastham, Ren Mai, and David Zhao</p>
       </header>
     </div>
   );
