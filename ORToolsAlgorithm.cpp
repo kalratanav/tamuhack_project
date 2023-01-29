@@ -13,46 +13,46 @@ void MultipleKnapsackMip() {
   // const std::vector<int> values = {
   //     {10, 30, 25, 50, 35, 30, 15, 40, 30, 35, 45, 10, 20, 30, 25}};
 
-  const std::vector<vector<int>> preferred = {
+  const std::vector<std::vector<int>> preferred = {
       {2, 4, 6, 11}, {1, 3, 5}, {1, 2, 11}, {10}, {1, 2, 3, 4}, {7, 10}, {1, 2, 3, 4, 5, 6}, {1, 10}, {1, 5}, {2, 6, 7, 11}, {1, 4, 5}
-  }
-  const std::vector<vector<int>> tolerate = {
+  };
+  const std::vector<std::vector<int>> tolerate = {
       {3, 8, 10}, {6, 7, 11}, {7}, {1, 3}, {9, 10, 11}, {1, 8}, {10, 11}, {2, 4, 11}, {2, 10}, {4, 5, 8}, {2, 3, 6, 7, 9, 10}
-  }
-  const std::vector<vector<int>> no_way = {
+  };
+  const std::vector<std::vector<int>> no_way = {
       {5, 7, 9}, {4, 8, 9, 10}, {4, 5, 6, 8, 9, 10}, {2, 5, 6, 7, 8, 9, 11}, {6, 7, 8}, {2, 3, 4, 5, 9, 11}, {8, 9}, {3, 5, 6, 7, 9}, {3, 4, 6, 7, 8, 11}, {1, 3, 9}, {8}
-  }
+  };
   
   const int num_items = weights.size();
   std::vector<int> all_items(num_items);
   std::iota(all_items.begin(), all_items.end(), 0);
-  std::vector<vector<bool>> no_way_bool(all_items);
+  std::vector<std::vector<bool>> no_way_bool(num_items);
   for(int i : all_items)
   {
-    std::vector<bool> no_way_bool_row(all_items, 0);
-    for(int j : no_way[i].size())
+    std::vector<bool> no_way_bool_row(num_items, 0);
+    for(int j : no_way[i])
     {
-        no_way_bool_row.at(no_way.at(i).at(j)-1) = 1;
+        no_way_bool_row.at(j-1) = 1;
     }
   }
 
-  std::vector<vector<bool>> pref_bool(all_items);
+  std::vector<std::vector<bool>> pref_bool(num_items);
   for (int i : all_items)
   {
-      std::vector<bool> pref_bool_row(all_items, 0);
-      for (int j : preferred[i].size())
+      std::vector<bool> pref_bool_row(num_items, 0);
+      for (int j : preferred[i])
       {
-          prefbool_row.at(preferred.at(i).at(j) - 1) = 1;
+          pref_bool_row.at(j - 1) = 1;
       }
   }
 
-  std::vector<vector<bool>> tol_bool(all_items);
+  std::vector<std::vector<bool>> tol_bool(num_items);
   for (int i : all_items)
   {
-      std::vector<bool> tol_bool_row(all_items, 0);
-      for (int j : tolerate[i].size())
+      std::vector<bool> tol_bool_row(num_items, 0);
+      for (int j : tolerate[i])
       {
-          tolbool_row.at(tolerate.at(i).at(j) - 1) = 1;
+          tol_bool_row.at(j - 1) = 1;
       }
   }
 
@@ -149,6 +149,6 @@ void MultipleKnapsackMip() {
 }
 
 int main(int argc, char** argv) {
-  operations_research::MultipleKnapsackMip();
+  MultipleKnapsackMip();
   return EXIT_SUCCESS;
 }

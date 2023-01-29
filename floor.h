@@ -20,7 +20,7 @@ public:
     void set_occupied(); //will be updated
     void add_team(Team filler); // add to the vector
     //change bool...if occupied/capacity > .75, then, we can change the bool val
-    void change_bool(bool new);
+    void change_bool(bool n);
     
     double peek_floor(); //checks current occupied
 };

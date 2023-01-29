@@ -3,7 +3,7 @@
 void floor::set_occupied(){
     //updating the occupied value
     double sum = 0;
-    for (unsigned int i = 0; i < teams.size()){
+    for (unsigned int i = 0; i < teams.size(); i++) {
         sum += teams.get_team_number();
     }
 
@@ -23,8 +23,8 @@ floor::~floor()
 }
 
 
-void floor::change_bool(bool new){
-    seventy_five_populated = new;
+void floor::change_bool(bool n){
+    seventy_five_populated = n;
 }
 
 
