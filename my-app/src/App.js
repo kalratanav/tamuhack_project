@@ -18,7 +18,8 @@ function App() {
     {
       const files = selectedFile;
       console.log("This will now POST the selectedFile");
-      
+      console.log("The name of the file is " + files.name)
+
     }
   }
 
