@@ -81,6 +81,28 @@ void Team::add_to_vector(int type, int add){
   }
 }
 
+
+// void Team::pop_vector(int type, int val){
+//   switch (type)
+//   {
+//   case 0: //prefered
+//     preferred;
+//     break;
+//   case 1: //tolerated
+//     tolerated.push_back(add);
+//     break;
+
+//   case 2: // no way
+//     no_way.push_back(add);
+//     break;
+//   }
+// }
+
+
+void Team::update_ranking(){
+  ranking = (prefered.size() + tolerated.size())/no_way.size();
+}
+
 void Team::set_team_number(int val)
 {
   team_number = val;

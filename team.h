@@ -12,6 +12,7 @@ class Team
         unsigned int strength; //size
         bool set_on_floor;
         int team_number;
+        double ranking;
         vector <int> preferred;
         vector <int> tolerated;
         vector <int> no_way;
@@ -37,6 +38,9 @@ class Team
         vector <int> getPreferred();
         vector <int> getTolerated();
         vector <int> getNo_Way();
+
+        void update_ranking();
+        // void pop_vector(int type, int add);
 };
 
 #endif

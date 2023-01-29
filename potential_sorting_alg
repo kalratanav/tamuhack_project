@@ -2,12 +2,7 @@
 #include "floor.cpp"
 #include <iostream>
 
-void Team_sorting(vector<Team*> &teams){
-    vector<float> values;
-    for (unsigned int i; i < teams.size(0); i++0){
-        
-    }
-}
+
 
 void sorting(vector<Team*> teams, vector<floor*> floors){
     //base in in terms of biggest to smallest...
