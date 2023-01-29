@@ -4,12 +4,11 @@ import {csv} from 'react';
 import Papa from "papaparse";
 var FormData = require('form-data');
 
-
-
 function App() {
 
   const [selectedFile, setSelectedFile] = useState("");
   const [isFilePicked, setIsFilePicked] = useState(false);
+  const [teamsOrLevels, setTeamsOrLevels] = useState("");
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -17,10 +16,18 @@ function App() {
   };
 
   const handleSubmission = (e) => {
+    if (isFilePicked)
+    {
+      const files = selectedFile;
+      if (e.name=='teams') {
+        
+      }
+      else {
 
-    const files = selectedFile;
-    
+      }
+    }
   }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -44,7 +51,7 @@ function App() {
                 onChange={changeHandler}
               />
               <div>
-                <button className='button' onClick={handleSubmission}>Submit</button>
+                <button className='button' name="teams" onClick={handleSubmission()}>Submit</button>
               </div>
             </div>
             <label className='PromptLabel'>
@@ -59,7 +66,7 @@ function App() {
               />
                 
               <div>
-                <button className='button' onClick={handleSubmission}>Submit</button>
+                <button className='button' name="floors" onClick={handleSubmission}>Submit</button>
               </div>
             </div>
           </div>
