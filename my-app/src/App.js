@@ -15,14 +15,11 @@ function App() {
         
         SessionService.login({"username":"admin", "password":"password"})
         .then();
-
-        
       }
       catch (Exception) {
         console.log("It didn't work");
         console.log(Exception.toString());
       }
-
   }
 
   return (
