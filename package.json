@@ -2,7 +2,8 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "papaparse": "^5.3.2",
-    "react-addons-css-transition-group": "^0.14.8"
+    "react-addons-css-transition-group": "^0.14.8",
+    "typewriter-effect": "^2.19.0"
   },
   "name": "tamuhack",
   "version": "1.0.0",
